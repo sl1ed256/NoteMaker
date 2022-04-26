@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+</head>
+<body>
+<div th:switch="${notes}">
+    <h2 th:case="null">No notes found!</h2>
+    <div th:case="*">
+        <h2>Notes</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="note : ${notes}">
+                <td th:text="${note.title}"></td>
+                <td th:text="${note.content}"></td>
+                <td><a th:href="@{note-update/{id}(id=${note.id})}">Edit</a></td>
+                <td><a th:href="@{note-delete/{id}(id=${note.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/note-create">Create note</a></p>
+</div>
+</body>
+</html>
