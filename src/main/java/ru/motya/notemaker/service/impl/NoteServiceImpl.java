@@ -3,7 +3,7 @@ package ru.motya.notemaker.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.motya.notemaker.model.Note;
-import ru.motya.notemaker.repository.UserRepository;
+import ru.motya.notemaker.repository.NoteRepository;
 import ru.motya.notemaker.service.NoteService;
 
 import java.util.List;
@@ -11,30 +11,30 @@ import java.util.List;
 @Service
 public class NoteServiceImpl implements NoteService {
 
-    private final UserRepository userRepository;
+    private final NoteRepository noteRepository;
 
     @Autowired
-    public NoteServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public NoteServiceImpl(NoteRepository noteRepository) {
+        this.noteRepository = noteRepository;
     }
 
     @Override
     public Note findNoteById(Integer id) {
-        return userRepository.getById(id);
+        return noteRepository.getById(id);
     }
 
     @Override
     public List<Note> findAll() {
-        return userRepository.findAll();
+        return noteRepository.findAll();
     }
 
     @Override
     public Note saveNote(Note note) {
-        return userRepository.save(note);
+        return noteRepository.save(note);
     }
 
     @Override
     public void deleteNoteById(Integer id) {
-        userRepository.deleteById(id);
+        noteRepository.deleteById(id);
     }
 }
